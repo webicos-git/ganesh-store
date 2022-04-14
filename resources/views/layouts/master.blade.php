@@ -210,7 +210,7 @@
                <footer class="sticky-footer">
                   <div class="container my-auto">
                      <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Created by <a href="https://getdoctorino.papasimo.com/"> Webicos</a> 2022</span>
+                        <span>Copyright &copy; Created by <a href="https://webicos.com/"> Webicos</a> 2022</span>
                      </div>
                   </div>
                </footer>
