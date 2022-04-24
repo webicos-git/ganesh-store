@@ -2,17 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::get('/', function () {
     return view('auth.login');
 });
@@ -24,17 +13,43 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/lang/{locale}', 'HomeController@lang');
 
 
-//Patients
-Route::get('/patient/create', 'PatientController@create')->name('patient.create');
-Route::post('/patient/create', 'PatientController@store')->name('patient.store');
-Route::get('/patient/all', 'PatientController@all')->name('patient.all');
-Route::get('/patient/view/{id}', 'PatientController@view')->where('id', '[0-9]+')->name('patient.view');
-Route::get('/patient/edit/{id}', 'PatientController@edit')->where('id', '[0-9]+')->name('patient.edit');
-Route::post('/patient/edit', 'PatientController@store_edit')->name('patient.store_edit');
+//Customer
+Route::get('/customer', 'CustomerController@index')->name('customer.index');
+Route::get('/customer/create', 'CustomerController@create')->name('customer.create');
+Route::post('/customer/create', 'CustomerController@store')->name('customer.store');
+Route::get('/customer/show/{id}', 'CustomerController@show')->where('id', '[0-9]+')->name('customer.show');
+Route::get('/customer/edit/{id}', 'CustomerController@edit')->where('id', '[0-9]+')->name('customer.edit');
+Route::post('/customer/edit', 'CustomerController@update')->name('customer.update');
+Route::get('/customer/delete/{id}', 'CustomerController@destroy')->where('id', '[0-9]+')->name('customer.delete');
 
-//Doctor
-Route::get('/doctor/edit/{id}', 'DoctorController@create')->where('id', '[0-9]+')->name('doctor.create');
-Route::post('/doctor/create', 'DoctorController@store')->name('doctor.store');
+//Product
+Route::get('/product', 'ProductController@index')->name('product.index');
+Route::get('/product/create', 'ProductController@create')->name('product.create');
+Route::post('/product/create', 'ProductController@store')->name('product.store');
+Route::get('/product/show/{id}', 'ProductController@show')->where('id', '[0-9]+')->name('product.show');
+Route::post('/product/edit', 'ProductController@update')->name('product.update');
+Route::get('/product/edit/{id}', 'ProductController@edit')->where('id', '[0-9]+')->name('product.edit');
+Route::get('/product/delete/{id}', 'ProductController@destroy')->where('id', '[0-9]+')->name('product.delete');
+
+//Group
+Route::get('/group', 'GroupController@index')->name('group.index');
+Route::get('/group/create', 'GroupController@create')->name('group.create');
+Route::post('/group/create', 'GroupController@store')->name('group.store');
+Route::get('/group/edit/{id}', 'GroupController@edit')->where('id', '[0-9]+')->name('group.edit');
+Route::post('/group/edit', 'GroupController@update')->name('group.update');
+Route::get('/group/delete/{id}', 'GroupController@destroy')->where('id', '[0-9]+')->name('group.delete');
+
+//Order
+Route::get('/order', 'OrderController@index')->name('order.index');
+Route::get('/order/create', 'OrderController@create')->name('order.create');
+Route::post('/order/create', 'OrderController@store')->name('order.store');
+Route::get('/order/delete/{id}', 'OrderController@destroy')->where('id', '[0-9]+')->name('order.delete');
+
+//Pricing
+Route::get('/pricing', 'PricingController@index')->name('pricing.index');
+Route::get('/pricing/create', 'PricingController@create')->name('pricing.create');
+Route::post('/pricing/create', 'PricingController@store')->name('pricing.store');
+Route::get('/pricing/delete/{id}', 'PricingController@destroy')->where('id', '[0-9]+')->name('pricing.delete');
 
 //Appointments
 Route::get('/appointment/create', 'AppointmentController@create')->name('appointment.create');
@@ -43,39 +58,6 @@ Route::get('/appointment/all', 'AppointmentController@all')->name('appointment.a
 Route::get('/appointment/checkslots/{id}','AppointmentController@checkslots')->where('id', '[0-9]+');
 Route::get('/appointment/delete/{id}','AppointmentController@destroy')->where('id', '[0-9]+');
 Route::post('/appointment/edit', 'AppointmentController@store_edit')->name('appointment.store_edit');
-
-//Drugs
-Route::get('/drug/create', 'DrugController@create')->name('drug.create');
-Route::post('/drug/create', 'DrugController@store')->name('drug.store');
-Route::get('/drug/edit/{id}', 'DrugController@edit')->where('id', '[0-9]+')->name('drug.edit');
-Route::post('/drug/edit', 'DrugController@store_edit')->name('drug.store_edit');
-Route::get('/drug/all', 'DrugController@all')->name('drug.all');
-Route::get('/drug/delete/{id}','DrugController@destroy');
-
-
-//Tests
-Route::get('/test/create', 'TestController@create')->name('test.create');
-Route::post('/test/create', 'TestController@store')->name('test.store');
-Route::get('/test/edit/{id}', 'TestController@edit')->name('test.edit');
-Route::post('/test/edit', 'TestController@store_edit')->name('test.store_edit');
-Route::get('/test/all', 'TestController@all')->name('test.all');
-Route::get('/test/delete/{id}', 'TestController@destroy')->where('id', '[0-9]+');
-
-//Prescriptions
-Route::get('/prescription/create', 'PrescriptionController@create')->name('prescription.create');
-Route::post('/prescription/create', 'PrescriptionController@store')->name('prescription.store');
-Route::get('/prescription/all', 'PrescriptionController@all')->name('prescription.all');
-Route::get('/prescription/view/{id}', 'PrescriptionController@view')->where('id', '[0-9]+')->name('prescription.view');
-Route::get('/prescription/pdf/{id}','PrescriptionController@pdf')->where('id', '[0-9]+');
-Route::get('/prescription/delete/{id}','PrescriptionController@destroy');
-
-//Billing
-Route::get('/billing/create', 'BillingController@create')->name('billing.create');
-Route::post('/billing/create', 'BillingController@store')->name('billing.store');
-Route::get('/billing/all', 'BillingController@all')->name('billing.all');
-Route::get('/billing/view/{id}', 'BillingController@view')->where('id', '[0-9]+')->name('billing.view');
-Route::get('/billing/pdf/{id}','BillingController@pdf')->where('id', '[0-9]+');
-Route::get('/billing/delete/{id}','BillingController@destroy');
 
 //Settings
 /* Doctorino Settings */

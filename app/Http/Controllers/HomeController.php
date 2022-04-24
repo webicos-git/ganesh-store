@@ -4,10 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
-use App\Prescription;
 use App\Appointment;
-use App\Billing;
-use App\Billing_item;
 use App;
 class HomeController extends Controller
 {
@@ -34,22 +31,16 @@ class HomeController extends Controller
         $total_patients_today = User::where('role','patient')->wheredate('created_at', Today())->count();
         $total_appointments = Appointment::all()->count();
         $total_appointments_today = Appointment::wheredate('date', Today())->get();
-        $total_prescriptions = Prescription::all()->count();
-        $total_payments = Billing::all()->count();
-        $total_payments = Billing::all()->count();
-        $total_payments_month = Billing_item::whereMonth('created_at',date('m'))->sum('invoice_amount');
-        $total_payments_month = Billing_item::whereMonth('created_at',date('m'))->sum('invoice_amount');
-        $total_payments_year = Billing_item::whereYear('created_at',date('Y'))->sum('invoice_amount');
 
         return view('home', [
             'total_patients' => $total_patients, 
-            'total_prescriptions' => $total_prescriptions, 
+            'total_prescriptions' => 0, 
             'total_patients_today' => $total_patients_today,
             'total_appointments' => $total_appointments,
             'total_appointments_today' => $total_appointments_today,
-            'total_payments' => $total_payments,
-            'total_payments_month' => $total_payments_month,
-            'total_payments_year' => $total_payments_year
+            'total_payments' => 0,
+            'total_payments_month' => 0,
+            'total_payments_year' => 0
         ]);
     }
 
