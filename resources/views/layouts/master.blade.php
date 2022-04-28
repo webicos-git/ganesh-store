@@ -57,11 +57,11 @@
                <!-- Divider -->
                <hr class="sidebar-divider">
                <!-- Heading -->
-               <div class="sidebar-heading">
+               <!-- <div class="sidebar-heading">
                   {{ __('sentence.Appointment') }}
-               </div>
+               </div> -->
                <!-- Nav Item - Pages Collapse Menu -->
-               <li class="nav-item">
+               <!-- <li class="nav-item">
                   <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAppointment" aria-expanded="true" aria-controls="collapseAppointment">
                   <i class="fas fa-fw fa-calendar-plus"></i>
                   <span>{{ __('sentence.Appointment') }}</span>
@@ -72,9 +72,9 @@
                         <a class="collapse-item" href="{{ route('appointment.all') }}">{{ __('sentence.All Appointments') }}</a>
                      </div>
                   </div>
-               </li>
+               </li> -->
                <!-- Divider -->
-               <hr class="sidebar-divider">
+               <!-- <hr class="sidebar-divider"> -->
                <!-- Heading -->
                <div class="sidebar-heading">
                   {{ 'Products' }}
@@ -134,43 +134,6 @@
                <!-- Divider -->
                <hr class="sidebar-divider">
                <!-- Heading -->
-               <div class="sidebar-heading">
-                  {{ __('sentence.Billing') }}
-               </div>
-               <!-- Nav Item - Utilities Collapse Menu -->
-               <li class="nav-item">
-                  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-                  <i class="fas fa-fw fa-dollar-sign"></i>
-                  <span>{{ __('sentence.Billing') }}</span>
-                  </a>
-                  <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="#">{{ __('sentence.Create Invoice') }}</a>
-                        <a class="collapse-item" href="#">{{ __('sentence.Billing List') }}</a>
-                     </div>
-                  </div>
-               </li>
-               <!-- Divider -->
-               <hr class="sidebar-divider">
-               <!-- Heading -->
-               <div class="sidebar-heading">
-                  {{ __('sentence.Settings') }}
-               </div>
-               <!-- Nav Item - Pages Collapse Menu -->
-               <li class="nav-item">
-                  <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseSettings" aria-expanded="true" aria-controls="collapseSettings">
-                  <i class="fas fa-fw fa-cogs"></i>
-                  <span>{{ __('sentence.Settings') }}</span>
-                  </a>
-                  <div id="collapseSettings" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{{ route('doctorino_settings.edit') }}">{{ __('sentence.Doctorino Settings') }}</a>
-                        <a class="collapse-item" href="{{ route('prescription_settings.edit') }}">{{ __('sentence.Prescription Settings') }}</a>
-                     </div>
-                  </div>
-               </li>
-               <!-- Divider -->
-               <hr class="sidebar-divider d-none d-md-block">
                <!-- Sidebar Toggler (Sidebar) -->
                <div class="text-center d-none d-md-inline">
                   <button class="rounded-circle border-0" id="sidebarToggle"></button>

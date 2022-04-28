@@ -43,26 +43,26 @@
                </div>
                <!-- Nav Item - Pages Collapse Menu -->
                <li class="nav-item">
-                  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePatient" aria-expanded="true" aria-controls="collapseTwo">
+                  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCustomer" aria-expanded="true" aria-controls="collapseTwo">
                   <i class="fa-solid fa-user"></i>
                   <span>Customers</span>
                   </a>
-                  <div id="collapsePatient" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                  <div id="collapseCustomer" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                      <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="<?php echo e(route('patient.create')); ?>">New Customer</a>
-                        <a class="collapse-item" href="<?php echo e(route('patient.all')); ?>">All Customers</a>
+                        <a class="collapse-item" href="<?php echo e(route('customer.create')); ?>">New Customer</a>
+                        <a class="collapse-item" href="<?php echo e(route('customer.index')); ?>">All Customers</a>
                      </div>
                   </div>
                </li>
                <!-- Divider -->
                <hr class="sidebar-divider">
                <!-- Heading -->
-               <div class="sidebar-heading">
+               <!-- <div class="sidebar-heading">
                   <?php echo e(__('sentence.Appointment')); ?>
 
-               </div>
+               </div> -->
                <!-- Nav Item - Pages Collapse Menu -->
-               <li class="nav-item">
+               <!-- <li class="nav-item">
                   <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAppointment" aria-expanded="true" aria-controls="collapseAppointment">
                   <i class="fas fa-fw fa-calendar-plus"></i>
                   <span><?php echo e(__('sentence.Appointment')); ?></span>
@@ -73,27 +73,14 @@
                         <a class="collapse-item" href="<?php echo e(route('appointment.all')); ?>"><?php echo e(__('sentence.All Appointments')); ?></a>
                      </div>
                   </div>
-               </li>
+               </li> -->
                <!-- Divider -->
-               <hr class="sidebar-divider">
+               <!-- <hr class="sidebar-divider"> -->
                <!-- Heading -->
                <div class="sidebar-heading">
-                  <?php echo e(__('sentence.Prescriptions')); ?>
+                  <?php echo e('Products'); ?>
 
                </div>
-               <!-- Nav Item - Pages Collapse Menu -->
-               <li class="nav-item">
-                  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                  <i class="fas fa-fw fa-dollar-sign"></i>
-                  <span>Pricing</span>
-                  </a>
-                  <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="<?php echo e(route('prescription.create')); ?>">New Pricing</a>
-                        <a class="collapse-item" href="<?php echo e(route('prescription.all')); ?>">All Pricing</a>
-                     </div>
-                  </div>
-               </li>
                <!-- Nav Item - Pages Collapse Menu -->
                <li class="nav-item">
                   <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
@@ -102,8 +89,8 @@
                   </a>
                   <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                      <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="<?php echo e(route('drug.create')); ?>">Add Group</a>
-                        <a class="collapse-item" href="<?php echo e(route('drug.all')); ?>">All Groups</a>
+                        <a class="collapse-item" href="<?php echo e(route('group.create')); ?>">Add Group</a>
+                        <a class="collapse-item" href="<?php echo e(route('group.index')); ?>">All Groups</a>
                      </div>
                   </div>
                </li>
@@ -115,53 +102,40 @@
                   </a>
                   <div id="collapseTests" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                      <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="<?php echo e(route('test.create')); ?>">Add Product</a>
-                        <a class="collapse-item" href="<?php echo e(route('test.all')); ?>">All Products</a>
+                        <a class="collapse-item" href="<?php echo e(route('product.create')); ?>">Add Product</a>
+                        <a class="collapse-item" href="<?php echo e(route('product.index')); ?>">All Products</a>
                      </div>
                   </div>
                </li>
-               <!-- Divider -->
-               <hr class="sidebar-divider">
-               <!-- Heading -->
-               <div class="sidebar-heading">
-                  <?php echo e(__('sentence.Billing')); ?>
-
-               </div>
-               <!-- Nav Item - Utilities Collapse Menu -->
-               <li class="nav-item">
-                  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-                  <i class="fas fa-fw fa-dollar-sign"></i>
-                  <span><?php echo e(__('sentence.Billing')); ?></span>
-                  </a>
-                  <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="<?php echo e(route('billing.create')); ?>"><?php echo e(__('sentence.Create Invoice')); ?></a>
-                        <a class="collapse-item" href="<?php echo e(route('billing.all')); ?>"><?php echo e(__('sentence.Billing List')); ?></a>
-                     </div>
-                  </div>
-               </li>
-               <!-- Divider -->
-               <hr class="sidebar-divider">
-               <!-- Heading -->
-               <div class="sidebar-heading">
-                  <?php echo e(__('sentence.Settings')); ?>
-
-               </div>
                <!-- Nav Item - Pages Collapse Menu -->
                <li class="nav-item">
-                  <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseSettings" aria-expanded="true" aria-controls="collapseSettings">
-                  <i class="fas fa-fw fa-cogs"></i>
-                  <span><?php echo e(__('sentence.Settings')); ?></span>
+                  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                  <i class="fas fa-fw fa-dollar-sign"></i>
+                  <span>Pricings</span>
                   </a>
-                  <div id="collapseSettings" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                  <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                      <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="<?php echo e(route('doctorino_settings.edit')); ?>"><?php echo e(__('sentence.Doctorino Settings')); ?></a>
-                        <a class="collapse-item" href="<?php echo e(route('prescription_settings.edit')); ?>"><?php echo e(__('sentence.Prescription Settings')); ?></a>
+                        <a class="collapse-item" href="<?php echo e(route('pricing.create')); ?>">New Pricing</a>
+                        <a class="collapse-item" href="<?php echo e(route('pricing.index')); ?>">All Pricing</a>
+                     </div>
+                  </div>
+               </li>
+               <!-- Nav Item - Pages Collapse Menu -->
+               <li class="nav-item">
+                  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOrder" aria-expanded="true" aria-controls="collapseOrder">
+                  <i class="fa-solid fa-store"></i>
+                  <span>Orders</span>
+                  </a>
+                  <div id="collapseOrder" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                     <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="<?php echo e(route('order.create')); ?>">New Order</a>
+                        <a class="collapse-item" href="<?php echo e(route('order.index')); ?>">All Orders</a>
                      </div>
                   </div>
                </li>
                <!-- Divider -->
-               <hr class="sidebar-divider d-none d-md-block">
+               <hr class="sidebar-divider">
+               <!-- Heading -->
                <!-- Sidebar Toggler (Sidebar) -->
                <div class="text-center d-none d-md-inline">
                   <button class="rounded-circle border-0" id="sidebarToggle"></button>
@@ -216,7 +190,7 @@
                <footer class="sticky-footer">
                   <div class="container my-auto">
                      <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Created by <a href="https://getdoctorino.papasimo.com/"> Webicos</a> 2022</span>
+                        <span>Copyright &copy; Created by <a href="https://webicos.com/"> Webicos</a> 2022</span>
                      </div>
                   </div>
                </footer>

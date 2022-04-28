@@ -12,7 +12,7 @@
          <div class="card-body">
             <div class="row no-gutters align-items-center">
                <div class="col mr-2">
-                  <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">{{ __('sentence.New Appointments') }}</div>
+                  <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">total Orders</div>
                   <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $total_appointments_today->count() }}</div>
                </div>
                <div class="col-auto">
@@ -28,7 +28,7 @@
          <div class="card-body">
             <div class="row no-gutters align-items-center">
                <div class="col mr-2">
-                  <div class="text-xs font-weight-bold text-success text-uppercase mb-1">{{ __('sentence.Total Appointments') }}</div>
+                  <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Today's Orders</div>
                   <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $total_appointments }}</div>
                </div>
                <div class="col-auto">
@@ -44,7 +44,7 @@
          <div class="card-body">
             <div class="row no-gutters align-items-center">
                <div class="col mr-2">
-                  <div class="text-xs font-weight-bold text-info text-uppercase mb-1">{{ __('sentence.New Patients') }}</div>
+                  <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total customers</div>
                   <div class="row no-gutters align-items-center">
                      <div class="col-auto">
                         <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $total_patients_today }}</div>
@@ -64,7 +64,7 @@
          <div class="card-body">
             <div class="row no-gutters align-items-center">
                <div class="col mr-2">
-                  <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">{{ __('sentence.All Patients') }}</div>
+                  <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Groups</div>
                   <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $total_patients }}</div>
                </div>
                <div class="col-auto">
@@ -82,11 +82,11 @@
          <div class="card-body">
             <div class="row no-gutters align-items-center">
                <div class="col mr-2">
-                  <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">{{ __('sentence.Total Prescriptions') }}</div>
+                  <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total products</div>
                   <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $total_prescriptions }}</div>
                </div>
                <div class="col-auto">
-                  <i class="fas fa-pills fa-2x text-gray-300"></i>
+                  <i class="fa-solid fa-store fa-2x text-gray-300"></i>
                </div>
             </div>
          </div>
@@ -117,7 +117,7 @@
                   <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">{{ __('sentence.Payments this month') }}</div>
                   <div class="row no-gutters align-items-center">
                      <div class="col-auto">
-                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $total_payments_month }} {{ App\Setting::get_option('currency') }}</div>
+                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">₹ {{ $total_payments_month }}</div>
                      </div>
                   </div>
                </div>
@@ -135,7 +135,7 @@
             <div class="row no-gutters align-items-center">
                <div class="col mr-2">
                   <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">{{ __('sentence.Payments this year') }}</div>
-                  <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $total_payments_year }} {{ App\Setting::get_option('currency') }}</div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">₹ {{ $total_payments_year }}</div>
                </div>
                <div class="col-auto">
                   <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -152,69 +152,26 @@
          <div class="card-header py-3">
             <div class="row">
                <div class="col-8">
-                  <h6 class="m-0 font-weight-bold text-primary w-75 p-2">{{ __('sentence.Appointment List') }} | {{ Today()->format('d M Y') }}</h6>
-               </div>
-               <div class="col-4">
-                  <a href="{{ route('appointment.create') }}" class="btn btn-primary float-right"><i class="fa fa-plus"></i> {{ __('sentence.New Appointment') }}</a>
+                  <h6 class="m-0 font-weight-bold text-primary w-75 p-2">Report Generation</h6>
                </div>
             </div>
-         </div>
-         <div class="card-body">
-            <div class="table-responsive">
-               <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
-                     <tr>
-                        <th class="text-center">ID</th>
-                        <th>{{ __('sentence.Patient Name') }}</th>
-                        <th>{{ __('sentence.Date') }}</th>
-                        <th>{{ __('sentence.Time Slot') }}</th>
-                        <th class="text-center">{{ __('sentence.Status') }}</th>
-                        <th class="text-center">{{ __('sentence.Created at') }}</th>
-                        <th class="text-center">{{ __('sentence.Actions') }}</th>
-                     </tr>
-                  </thead>
-                  <tbody>
-                     @foreach($total_appointments_today as $appointment)
-                     <tr>
-                        <td class="text-center">{{ $appointment->id }}</td>
-                        <td><a href="{{ url('patient/view/'.$appointment->user_id) }}"> {{ $appointment->User->name }} </a></td>
-                        <td> {{ $appointment->date->format('d M Y') }} </td>
-                        <td> {{ $appointment->time_start }} - {{ $appointment->time_end }}</td>
-                        <td class="text-center">
-                           @if($appointment->visited == 0)
-                           <a href="#" class="btn btn-warning btn-icon-split btn-sm">
-                           <span class="icon text-white-50">
-                           <i class="fas fa-hourglass-start"></i>
-                           </span>
-                           <span class="text">{{ __('sentence.Not Yet Visited') }}</span>
-                           </a>
-                           @elseif($appointment->visited == 1)
-                           <a href="#" class="btn btn-success btn-icon-split btn-sm">
-                           <span class="icon text-white-50">
-                           <i class="fas fa-check"></i>
-                           </span>
-                           <span class="text">{{ __('sentence.Visited') }}</span>
-                           </a>
-                           @else
-                           <a href="#" class="btn btn-danger btn-icon-split btn-sm">
-                           <span class="icon text-white-50">
-                           <i class="fas fa-user-times"></i>
-                           </span>
-                           <span class="text">{{ __('sentence.Cancelled') }}</span>
-                           </a>
-                           @endif
-                        </td>
-                        <td class="text-center">{{ $appointment->created_at->format('d M Y H:i') }}</td>
-                        <td align="center">
-                           <a data-rdv_id="{{ $appointment->id }}" data-rdv_date="{{ $appointment->date->format('d M Y') }}" data-rdv_time_start="{{ $appointment->time_start }}" data-rdv_time_end="{{ $appointment->time_end }}" data-patient_name="{{ $appointment->User->name }}" class="btn btn-success btn-circle btn-sm text-white" data-toggle="modal" data-target="#EDITRDVModal"><i class="fas fa-check"></i></a>
-                           <a href="{{ url('appointment/delete/'.$appointment->id) }}" class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i></a>                      
-                        </td>
-                     </tr>
-                     @endforeach
-                  </tbody>
-               </table>
+            <div class="row">
+              <div class="col-3">
+                  <input class="form-control" type="date" name="date" value="">
+              </div>
+              <div class="col-3">
+                <select name="group_id" class="form-control" id="inputPassword3" required>
+                  <option disabled selected>Select a group</option>
+                  <option value="mora">Mora</option>
+                  <option value="mora">uran</option>
+                </select>
+              </div>
+              <div class="col-2">
+                <button class="btn btn-success"><i class="fa-solid fa-download"></i></button>
+              </div>
             </div>
          </div>
+         
       </div>
    </div>
 </div>
