@@ -38,6 +38,7 @@
                <tr>
                   <th>ID</th>
                   <th>Product Name</th>
+                  <th>Product Code</th>
                   <th>Product Unit</th>
                   <th>Product Description</th>
                   <th class="text-center">{{ __('sentence.Actions') }}</th>
@@ -48,6 +49,7 @@
                <tr>
                   <td>{{ $product->id }}</td>
                   <td>{{ $product->name }}</td>
+                  <td>{{ $product->product_code }}</td>
                   <td>{{ $product->unit }} </td>
                   <td>{{ $product->description }} </td>
                   <td class="text-center">

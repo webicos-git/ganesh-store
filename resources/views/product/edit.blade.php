@@ -34,8 +34,14 @@
                <div class="form-group row">
                   <label for="inputEmail3" class="col-sm-3 col-form-label">{{ 'Product Name' }}<font color="red">*</font></label>
                   <div class="col-sm-9">
-                     <input type="text" class="form-control" id="inputEmail3" name="name" value="{{ $product->name }}">
+                     <input type="text" class="form-control" id="inputEmail3" name="name" value="{{ $product->name }}" required>
                      {{ csrf_field() }}
+                  </div>
+               </div>
+               <div class="form-group row">
+                  <label for="inputPassword3" class="col-sm-3 col-form-label">{{ 'Product Code' }}<font color="red">*</font></label>
+                  <div class="col-sm-9">
+                     <input type="text" class="form-control" id="inputPassword3" name="product_code" value="{{ $product->product_code }}" required>
                   </div>
                </div>
                <div class="form-group row">
