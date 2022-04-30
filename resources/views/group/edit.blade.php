@@ -28,12 +28,12 @@
             @endif
             <form method="post" action="{{ route('group.update') }}">
                <div class="form-group">
-                  <label for="exampleInputEmail1">Group Name *</label>
-                  <input type="text" class="form-control" name="name" id="TradeName" aria-describedby="TradeName" value="{{ $group->name }}">
+                  <label for="exampleInputEmail1">Group Name <font color="red">*</font></label>
+                  <input type="text" class="form-control" name="name" id="TradeName" aria-describedby="TradeName" value="{{ $group->name }}" required>
                   {{ csrf_field() }}
                </div>
                <div class="form-group">
-                  <label for="exampleInputPassword1">Group Description *</label>
+                  <label for="exampleInputPassword1">Group Description</label>
                   <input type="text" class="form-control" name="description" id="GenericName" value="{{ $group->description }}">
                   <input type="hidden" name="id" value="{{ $group->id }}">
                </div>

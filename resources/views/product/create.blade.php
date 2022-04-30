@@ -32,14 +32,14 @@
          <div class="card-body">
             <form method="post" action="{{ route('product.create') }}">
                <div class="form-group row">
-                  <label for="inputEmail3" class="col-sm-3 col-form-label">Product Name<font color="red">*</font></label>
+                  <label for="inputEmail3" class="col-sm-3 col-form-label">Product Name <font color="red">*</font></label>
                   <div class="col-sm-9">
                      <input type="text" class="form-control" id="inputEmail3" name="name" required>
                      {{ csrf_field() }}
                   </div>
                </div>
                <div class="form-group row">
-                  <label for="inputPassword3" class="col-sm-3 col-form-label">Product Code<font color="red">*</font></label>
+                  <label for="inputPassword3" class="col-sm-3 col-form-label">Product Code <font color="red">*</font></label>
                   <div class="col-sm-9">
                      <input type="text" class="form-control" id="inputPassword3" name="product_code" required>
                   </div>

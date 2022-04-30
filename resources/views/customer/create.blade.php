@@ -35,7 +35,7 @@
                 <div class="card-body">
                  <form method="post" action="{{ route('customer.create') }}">
                     <div class="form-group row">
-                      <label for="inputEmail3" class="col-sm-3 col-form-label">{{ __('sentence.Full Name') }}<font color="red">*</font></label>
+                      <label for="inputEmail3" class="col-sm-3 col-form-label">{{ __('sentence.Full Name') }} <font color="red">*</font></label>
                       <div class="col-sm-9">
                         <input type="text" class="form-control" id="inputEmail3" name="fullname" required>
                         {{ csrf_field() }}
@@ -48,19 +48,19 @@
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label for="inputPassword3" class="col-sm-3 col-form-label">{{ __('sentence.Phone') }}<font color="red">*</font></label>
+                      <label for="inputPassword3" class="col-sm-3 col-form-label">{{ __('sentence.Phone') }} <font color="red">*</font></label>
                       <div class="col-sm-9">
                         <input type="number" class="form-control" id="inputPassword3" name="phone" required>
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label for="inputPassword3" class="col-sm-3 col-form-label">{{ __('sentence.Address') }}<font color="red">*</font></label>
+                      <label for="inputPassword3" class="col-sm-3 col-form-label">{{ __('sentence.Address') }} <font color="red">*</font></label>
                       <div class="col-sm-9">
                         <input type="text" class="form-control" id="inputPassword3" name="address" required>
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label for="inputPassword3" class="col-sm-3 col-form-label">Group<font color="red">*</font></label>
+                      <label for="inputPassword3" class="col-sm-3 col-form-label">Group <font color="red">*</font></label>
                       <div class="col-sm-9">
                         <select name="group_id" class="form-control" id="inputPassword3" required>
                           <option disabled selected>~ Select a group ~</option>

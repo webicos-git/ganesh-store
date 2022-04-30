@@ -28,8 +28,8 @@
             @endif
             <form method="post" action="{{ route('group.store') }}">
                <div class="form-group">
-                  <label for="exampleInputEmail1">Group Name *</label>
-                  <input type="text" class="form-control" name="name" id="TradeName" aria-describedby="TradeName">
+                  <label for="exampleInputEmail1">Group Name <font color="red">*</font></label>
+                  <input type="text" class="form-control" name="name" id="TradeName" aria-describedby="TradeName" required>
                   {{ csrf_field() }}
                </div>
                <div class="form-group">

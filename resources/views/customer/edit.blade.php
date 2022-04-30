@@ -35,33 +35,33 @@
                 <div class="card-body">
                  <form method="post" action="{{ route('customer.update') }}">
                     <div class="form-group row">
-                      <label for="inputEmail3" class="col-sm-3 col-form-label">{{ __('sentence.Full Name') }}<font color="red">*</font></label>
+                      <label for="inputEmail3" class="col-sm-3 col-form-label">{{ __('sentence.Full Name') }} <font color="red">*</font></label>
                       <div class="col-sm-9">
-                        <input type="text" class="form-control" id="inputEmail3" name="fullname" value="{{ $customer->fullname }}">
+                        <input type="text" class="form-control" id="inputEmail3" name="fullname" value="{{ $customer->fullname }}" required> 
                         <input type="hidden" class="form-control" id="inputEmail3" name="id" value="{{ $customer->id }}">
                         {{ csrf_field() }}
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label for="inputPassword3" class="col-sm-3 col-form-label">E-mail<font color="red">*</font></label>
+                      <label for="inputPassword3" class="col-sm-3 col-form-label">E-mail</label>
                       <div class="col-sm-9">
                         <input type="email" class="form-control" id="inputPassword3" name="email" value="{{ $customer->email }}">
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label for="inputPassword3" class="col-sm-3 col-form-label">{{ __('sentence.Phone') }}</label>
+                      <label for="inputPassword3" class="col-sm-3 col-form-label">{{ __('sentence.Phone') }} <font color="red">*</font></label>
                       <div class="col-sm-9">
-                        <input type="text" class="form-control" id="inputPassword3" name="phone" value="{{ $customer->phone }}">
+                        <input type="text" class="form-control" id="inputPassword3" name="phone" value="{{ $customer->phone }}" required>
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label for="inputPassword3" class="col-sm-3 col-form-label">{{ __('sentence.Address') }}</label>
+                      <label for="inputPassword3" class="col-sm-3 col-form-label">{{ __('sentence.Address') }} <font color="red">*</font></label>
                       <div class="col-sm-9">
-                        <input type="text" class="form-control" id="inputPassword3" name="address" value="{{ $customer->address }}">
+                        <input type="text" class="form-control" id="inputPassword3" name="address" value="{{ $customer->address }}" required>
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label for="inputPassword3" class="col-sm-3 col-form-label">Group<font color="red">*</font></label>
+                      <label for="inputPassword3" class="col-sm-3 col-form-label">Group <font color="red">*</font></label>
                       <div class="col-sm-9">
                         <select name="group_id" class="form-control" id="inputPassword3" required>
                           <option disabled selected>~ Select a group ~</option>
