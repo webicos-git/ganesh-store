@@ -6,6 +6,7 @@ use App\Order;
 use App\OrderProduct;
 use App\Customer;
 use App\Product;
+use App\Pricing;
 use Redirect;
 use Illuminate\Http\Request;
 
@@ -17,14 +18,24 @@ class OrderController extends Controller
     
     public function index()
     {
-        $orders = OrderProduct::all();
+        $orders = Order::all();
         foreach ($orders as $order) {
-            $actual_order = Order::find($order->order_id);
-            $order->customer_id = $actual_order->customer_id;
-            $order->status = $actual_order->status;
+            $order_products = OrderProduct::where('order_id', $order->id)->get();
+            
+            $products = [];
+            $total_amount = 0;
+            foreach ($order_products as $op) {
+                $product = Product::find($op->product_id);
+                $price = Pricing::where('product_id', $product->id)->first()->price;
 
-            $order->customer_name = Customer::find($actual_order->customer_id)->fullname;
-            $order->product_name = Product::find($order->product_id)->name;
+                $total_amount += ($price * $op->quantity);
+
+                array_push($products, $product->name);
+            }
+            
+            $order->customer_name = Customer::find($order->customer_id)->fullname;
+            $order->products = implode(', ', $products);
+            $order->total_amount = $total_amount;
         }
 
         return view('order.index', ['orders' => $orders]);
@@ -38,6 +49,19 @@ class OrderController extends Controller
         return view('order.create', ['customers' => $customers, 'products' => $products]);
     }
 
+    public function customerProducts(Request $request)
+    {
+        $customers = Customer::all();
+        
+        $pricings = Pricing::where('customer_id', $request->customer_id)->get();
+        $product_ids = [];
+        foreach ($pricings as $pricing) {
+            array_push($product_ids, $pricing->product_id);
+        }
+
+        $products = Product::whereIn('id', $product_ids)->get();
+        return view('order.create', ['customer_id' => $request->customer_id, 'customers' => $customers, 'products' => $products]);
+    }
 
     public function store(Request $request)
     {

@@ -44,7 +44,11 @@
                </div>
                
                <div class="form-group">
-                  <input type="text" class="form-control" id="inputPassword3" name="status" placeholder="Status">
+                  <select class="form-control select2 select2-hidden-accessible" id="drug" tabindex="-1" name="status" aria-hidden="true">
+                     <option disabled >~ Set Order Status ~</option>
+                     <option selected value="Completed">Completed</option>
+                     <option value="Pending">Pending</option>
+                  </select>
                </div>
 
                <div class="form-group">

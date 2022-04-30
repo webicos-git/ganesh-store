@@ -49,7 +49,7 @@
                <tr>
                   <td>{{ $pricing->id }}</td>
                   <td><a href="{{ url('customer/show/'.$pricing->customer_id) }}"> {{ $pricing->customer_name }} </a></td>
-                  <td><a href="{{ url('product/show/'.$pricing->product_id) }}"> {{ $pricing->product_name }} </a></td>
+                  <td>{{ $pricing->product_name }}</td>
                   <td>{{ $pricing->price }}</td>
                   <td class="text-center">
                      <a href="{{ url('pricing/delete/'.$pricing->id) }}" class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i></a>

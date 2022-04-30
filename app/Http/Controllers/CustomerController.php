@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Customer;
 use App\Group;
+use App\Order;
+use App\OrderProduct;
+use App\Product;
+use App\Pricing;
 use Redirect;
 use Illuminate\Http\Request;
 
@@ -57,7 +61,35 @@ class CustomerController extends Controller
     public function show($id)
     {
         $customer = Customer::find($id);
-        return view('customer.view', ['customer' => $customer]);
+        $orders = Order::where('customer_id', $id)->get();
+        $pricings = Pricing::where('customer_id', $id)->get();
+        
+        foreach ($orders as $order) {
+            $order_products = OrderProduct::where('order_id', $order->id)->get();
+            
+            $products = [];
+            $total_amount = 0;
+            foreach ($order_products as $op) {
+                $product = Product::find($op->product_id);
+                $price = Pricing::where('product_id', $product->id)->first()->price;
+
+                $total_amount += ($price * $op->quantity);
+
+                array_push($products, $product->name);
+            }
+            
+            $order->customer_name = Customer::find($order->customer_id)->fullname;
+            $order->products = implode(', ', $products);
+            $order->total_amount = $total_amount;
+        }
+
+
+        foreach ($pricings as $pricing) {
+            $pricing->customer_name = Customer::find($pricing->customer_id)->fullname;
+            $pricing->product_name = Product::find($pricing->product_id)->name;
+        }
+
+        return view('customer.view', ['customer' => $customer, 'orders' => $orders, 'pricings' => $pricings]);
     }
 
     public function edit($id)

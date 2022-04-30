@@ -39,8 +39,8 @@
                <tr>
                   <th>Id</th>
                   <th class="text-center">{{ 'Customer' }}</th>
-                  <th class="text-center">{{ 'Product' }}</th>
-                  <th class="text-center">{{ 'Quantity' }}</th>
+                  <th class="text-center">{{ 'Products' }}</th>
+                  <th class="text-center">{{ 'Total Amount' }}</th>
                   <th class="text-center">{{ 'Status' }}</th>
                   <th class="text-center">{{ 'Actions' }}</th>
                </tr>
@@ -50,8 +50,8 @@
                <tr>
                   <td>{{ $order->id }}</td>
                   <td><a href="{{ url('customer/show/'.$order->customer_id) }}"> {{ $order->customer_name }} </a></td>
-                  <td><a href="{{ url('product/show/'.$order->product_id) }}"> {{ $order->product_name }} </a></td>
-                  <td>{{ $order->quantity }}</td>
+                  <td>{{ $order->products }}</td>
+                  <td>{{ $order->total_amount }}</td>
                   <td>{{ $order->status }}</td>
                   <td class="text-center">
                      <a href="{{ url('order/delete/'.$order->id) }}" class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i></a>

@@ -41,7 +41,7 @@
                <div class="form-group row">
                   <label for="inputPassword3" class="col-sm-3 col-form-label">{{ 'Product Code' }} <font color="red">*</font></label>
                   <div class="col-sm-9">
-                     <input type="text" class="form-control" id="inputPassword3" name="product_code" value="{{ $product->product_code }}" required>
+                     <input type="text" class="form-control" id="inputPassword3" name="product_code" value="{{ $product->product_code }}" required maxlength="3">
                   </div>
                </div>
                <div class="form-group row">
