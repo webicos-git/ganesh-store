@@ -59,7 +59,7 @@
                                 <td class="text-center"> {{ $customer->group_name }} </td>
                                 <td class="text-center"> {{ $customer->gst_number }} </td>
                                 <td class="text-center"> {{ $customer->opening_balance }} </td>
-                                <td class="text-center">{{ $customer->as_of_date }}</td>
+                                <td class="text-center">{{ \Carbon\Carbon::parse($customer->as_of_date)->format('d/m/Y') }}</td>
                                 <td class="text-center">
                                     <a href="{{ url('customer/show/' . $customer->id) }}"
                                         class="btn btn-success btn-circle btn-sm"><i class="fa fa-eye"></i></a>

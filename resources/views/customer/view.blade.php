@@ -17,17 +17,35 @@
                                     class="img-profile rounded-circle img-fluid"></center>
                             <h4 class="text-center"><b>{{ $customer->name }}</b></h4>
                             <hr>
-                            @isset($customer->email)
-                                <p><b>{{ 'Email' }} :</b> {{ $customer->email }}</p>
+                            @isset($customer->group_name)
+                                <p><b>Group :</b> {{ $customer->group_name }}</p>
                             @endisset
 
                             @isset($customer->phone)
                                 <p><b>{{ __('sentence.Phone') }} :</b> {{ $customer->phone }}</p>
                             @endisset
 
+                            @isset($customer->email)
+                                <p><b>{{ 'Email' }} :</b> {{ $customer->email }}</p>
+                            @endisset
+
                             @isset($customer->address)
                                 <p><b>{{ __('sentence.Address') }} :</b> {{ $customer->address }}</p>
                             @endisset
+
+                            @isset($customer->gst_number)
+                                <p><b>GST Number :</b> {{ $customer->gst_number }}</p>
+                            @endisset
+
+                            @isset($customer->opening_balance)
+                                <p><b>Opening Balance :</b> {{ $customer->opening_balance }}</p>
+                            @endisset
+
+                            @isset($customer->as_of_date)
+                                <p><b>As of Date :</b> {{ \Carbon\Carbon::parse($customer->as_of_date)->format('d/m/Y') }}
+                                </p>
+                            @endisset
+
                         </div>
                         <div class="col-md-8 col-sm-6">
                             <ul class="nav nav-tabs" id="myTab" role="tablist">

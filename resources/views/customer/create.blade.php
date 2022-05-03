@@ -95,13 +95,13 @@
                         <div class="form-group row">
                             <div class="col-sm-1">
                                 <input type="radio" class="form-control create-customer-radio" id="inputPassword3"
-                                    name="to_receive">
+                                    name="customer_type" value="to_receive">
                             </div>
                             <label for="inputPassword3" class="col-sm-2 col-form-label">To receive</label>
 
                             <div class="col-sm-1">
                                 <input type="radio" class="form-control create-customer-radio" id="inputPassword3"
-                                    name="to_pay">
+                                    name="customer_type" value="to_pay">
                             </div>
                             <label for="inputPassword3" class="col-sm-2 col-form-label">To pay</label>
                         </div>

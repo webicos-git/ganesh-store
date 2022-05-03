@@ -50,8 +50,7 @@ class CustomerController extends Controller
         $customer->gst_number = $request->gst_number;
         $customer->opening_balance = $request->opening_balance;
         $customer->as_of_date = $request->as_of_date;
-        $customer->to_receive = $request->to_receive ? 1 : 0;
-        $customer->to_pay = $request->to_pay ? 1 : 0;
+        $customer->customer_type = $request->customer_type;
 
         $customer->save();
 
@@ -64,6 +63,8 @@ class CustomerController extends Controller
         $orders = Order::where('customer_id', $id)->get();
         $pricings = Pricing::where('customer_id', $id)->get();
         
+        $customer->group_name = Group::find($customer->group_id)->name;
+
         foreach ($orders as $order) {
             $order_products = OrderProduct::where('order_id', $order->id)->get();
             
@@ -82,7 +83,6 @@ class CustomerController extends Controller
             $order->products = implode(', ', $products);
             $order->total_amount = $total_amount;
         }
-
 
         foreach ($pricings as $pricing) {
             $pricing->customer_name = Customer::find($pricing->customer_id)->fullname;
@@ -117,8 +117,7 @@ class CustomerController extends Controller
         $customer->gst_number = $request->gst_number;
         $customer->opening_balance = $request->opening_balance;
         $customer->as_of_date = $request->as_of_date;
-        $customer->to_receive = $request->to_receive ? 1 : 0;
-        $customer->to_pay = $request->to_pay ? 1 : 0;
+        $customer->customer_type = $request->customer_type;
 
         $customer->save();
 

@@ -27,8 +27,7 @@ class CreateCustomersTable extends Migration
             $table->string('gst_number')->nullable();
             $table->string('opening_balance')->nullable();
             $table->timestamp('as_of_date')->nullable();
-            $table->boolean('to_receive')->nullable();
-            $table->boolean('to_pay')->nullable();
+            $table->string('customer_type')->nullable();
             $table->timestamps();
         });
     }

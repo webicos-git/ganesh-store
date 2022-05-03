@@ -108,13 +108,21 @@
                         <div class="form-group row">
                             <div class="col-sm-1">
                                 <input type="radio" class="form-control create-customer-radio" id="inputPassword3"
-                                    name="to_receive" checked="{{ $customer->to_receive ? 1 : 0 }}">
+                                    name="customer_type" value="to_receive" 
+                                    @if ($customer->customer_type == "to_receive")
+                                        checked
+                                    @endif
+                                    >
                             </div>
                             <label for="inputPassword3" class="col-sm-2 col-form-label">To receive</label>
 
                             <div class="col-sm-1">
                                 <input type="radio" class="form-control create-customer-radio" id="inputPassword3"
-                                    name="to_pay" checked="{{ $customer->to_pay ? 1 : 0 }}">
+                                    name="customer_type" value="to_pay"
+                                    @if ($customer->customer_type == "to_pay")
+                                        checked
+                                    @endif
+                                    >
                             </div>
                             <label for="inputPassword3" class="col-sm-2 col-form-label">To pay</label>
                         </div>
