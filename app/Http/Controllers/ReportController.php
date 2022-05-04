@@ -21,7 +21,7 @@ class ReportController extends Controller
         $this->middleware('auth');
     }
 
-    public function getReportData($group_id = null)
+    public function getReportData($group_id = null, $date = null)
     {
         $products = Product::all();
         if ($group_id) {
@@ -36,7 +36,11 @@ class ReportController extends Controller
             $product->total_quantity = 0;
 
             foreach ($customers as $customer) {
-                $orders = Order::where('customer_id', $customer->id)->get();
+                if ($date) {
+                    $orders = Order::where('customer_id', $customer->id)->wheredate('created_at', $date)->get();
+                } else {
+                    $orders = Order::where('customer_id', $customer->id)->get();
+                }
                 $order_ids = [];
 
                 foreach ($orders as $order) {
@@ -64,7 +68,8 @@ class ReportController extends Controller
             'products' => $products,
             'customers' => $customers,
             'groups' => $groups,
-            'group_id' => $group_id
+            'group_id' => $group_id,
+            'date' => $date
         ];
     }
 
@@ -105,6 +110,7 @@ class ReportController extends Controller
         //     'groups' => $report_data['groups'],
         //     'group_id' => $report_data['group_id'],
         //     'group_name' => $group_name,
+        //     'date' => $report_data['date'] ? $report_data['date'] : today(),
         // ]);
 
         $pdf = PDF::loadView('report.pdf', [
@@ -113,6 +119,36 @@ class ReportController extends Controller
             'groups' => $report_data['groups'],
             'group_id' => $report_data['group_id'],
             'group_name' => $group_name,
+            'date' => $report_data['date'] ? $report_data['date'] : today(),
+        ]);
+
+        return $pdf->download('ganesh-store-report.pdf');
+    }
+
+    public function homePdf(Request $request)
+    {
+        $validatedData = $request->validate([
+            'date' => 'required',
+            'group_id' => 'required'
+        ]);
+        $report_data = $this->getReportData($request->group_id, $request->date);
+        $group_name = Group::find($request->group_id)->name;
+
+        // return view('report.pdf', [
+        //     'products' => $report_data['products'],
+        //     'customers' => $report_data['customers'],
+        //     'groups' => $report_data['groups'],
+        //     'group_id' => $report_data['group_id'],
+        //     'group_name' => $group_name,
+        // ]);
+
+        $pdf = PDF::loadView('report.pdf', [
+            'products' => $report_data['products'],
+            'customers' => $report_data['customers'],
+            'groups' => $report_data['groups'],
+            'group_id' => $report_data['group_id'],
+            'group_name' => $group_name,
+            'date' => $report_data['date']
         ]);
 
         return $pdf->download('ganesh-store-report.pdf');

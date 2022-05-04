@@ -55,6 +55,7 @@ Route::get('/pricing/delete/{id}', 'PricingController@destroy')->where('id', '[0
 Route::get('/reports', 'ReportController@index')->name('report.index');
 Route::post('/reports', 'ReportController@filter')->name('report.filter');
 Route::get('/reports/pdf/{id?}', 'ReportController@pdf')->where('id', '[0-9]+');
+Route::post('/reports/pdf', 'ReportController@homePdf')->name('report.pdf');
 
 //Appointments
 Route::get('/appointment/create', 'AppointmentController@create')->name('appointment.create');

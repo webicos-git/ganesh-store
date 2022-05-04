@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
-use App\Appointment;
+use App\Customer;
+use App\Group;
+use App\Order;
+use App\OrderProduct;
+use App\Product;
+use App\Pricing;
 use App;
 class HomeController extends Controller
 {
@@ -25,19 +29,19 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $groups = Group::all();
 
-        
-        $total_patients = User::where('role','patient')->count();
-        $total_patients_today = User::where('role','patient')->wheredate('created_at', Today())->count();
-        $total_appointments = Appointment::all()->count();
-        $total_appointments_today = Appointment::wheredate('date', Today())->get();
+        $total_orders = Order::all()->count();
+        $total_orders_today = Order::wheredate('created_at', Today())->count();
+        $total_customers = Customer::all()->count();
+        $total_products = Product::all()->count();
 
         return view('home', [
-            'total_patients' => $total_patients, 
-            'total_prescriptions' => 0, 
-            'total_patients_today' => $total_patients_today,
-            'total_appointments' => $total_appointments,
-            'total_appointments_today' => $total_appointments_today,
+            'groups' => $groups,
+            'total_orders' => $total_orders, 
+            'total_orders_today' => $total_orders_today, 
+            'total_customers' => $total_customers,
+            'total_products' => $total_products,
             'total_payments' => 0,
             'total_payments_month' => 0,
             'total_payments_year' => 0

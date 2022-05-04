@@ -12,8 +12,8 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">total Orders</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $total_appointments_today->count() }}
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Orders</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $total_orders }}
                             </div>
                         </div>
                         <div class="col-auto">
@@ -30,7 +30,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Today's Orders</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $total_appointments }}</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $total_orders_today }}</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -48,7 +48,7 @@
                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total customers</div>
                             <div class="row no-gutters align-items-center">
                                 <div class="col-auto">
-                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $total_patients_today }}
+                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $total_customers }}
                                     </div>
                                 </div>
                             </div>
@@ -67,7 +67,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Groups</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $total_patients }}</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $groups->count() }}</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-users fa-2x text-gray-300"></i>
@@ -85,7 +85,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total products</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $total_prescriptions }}</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $total_products }}</div>
                         </div>
                         <div class="col-auto">
                             <i class="fa-solid fa-store fa-2x text-gray-300"></i>
@@ -162,20 +162,43 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-3">
-                            <input class="form-control" type="date" name="date" value="">
+                        <div class="col">
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                            @if (session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
                         </div>
-                        <div class="col-3">
-                            <select name="group_id" class="form-control" id="inputPassword3" required>
-                                <option disabled selected>Select a group</option>
-                                <option value="mora">Mora</option>
-                                <option value="mora">uran</option>
-                            </select>
-                        </div>
-                        <div class="col-2">
-                            <button class="btn btn-success"><i class="fa-solid fa-download"></i></button>
-                        </div>
+                
                     </div>
+                    <form method="POST" action="{{ route('report.pdf') }}">
+                    <div class="row">
+                            <div class="col-3">
+                                <input class="form-control" type="date" name="date" value="">
+                                @csrf
+                            </div>
+                            <div class="col-3">
+                                <select name="group_id" class="form-control" id="inputPassword3" required>
+                                    <option disabled selected>~ Select a group ~</option>
+                                    @foreach ($groups as $group)
+                                        <option value="{{ $group->id }}">{{ $group->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-2">
+                                <button type="submit" class="btn btn-success"><i class="fa-solid fa-download"></i></button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
 
             </div>

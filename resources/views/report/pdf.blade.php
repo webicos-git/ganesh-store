@@ -61,7 +61,7 @@
 </head>
 
 <body>
-    <span>Date: {{ \Carbon\Carbon::parse(today())->format('d/m/Y') }}</span>
+    <span>Date: {{ \Carbon\Carbon::parse($date)->format('d/m/Y') }}</span>
     <div class="top-row">
         <h2>Group Name: {{ $group_name ? $group_name : 'NA' }}</h2>
     </div>
