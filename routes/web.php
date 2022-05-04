@@ -51,6 +51,8 @@ Route::get('/pricing', 'PricingController@index')->name('pricing.index');
 Route::get('/pricing/create', 'PricingController@create')->name('pricing.create');
 Route::post('/pricing/create', 'PricingController@store')->name('pricing.store');
 Route::get('/pricing/delete/{id}', 'PricingController@destroy')->where('id', '[0-9]+')->name('pricing.delete');
+Route::get('/pricing/edit/{id}', 'PricingController@edit')->where('id', '[0-9]+')->name('pricing.edit');
+Route::post('/pricing/edit', 'PricingController@update')->name('pricing.update');
 
 //Report Generation
 Route::get('/reports', 'ReportController@index')->name('report.index');

@@ -44,7 +44,7 @@
                                 </font></label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="inputPassword3" name="product_code" required
-                                    maxlength="3">
+                                    maxlength="3" placeholder="Upto 3 characters">
                             </div>
                         </div>
                         <div class="form-group row">

@@ -73,12 +73,25 @@ class PricingController extends Controller
 
     public function edit($id)
     {
+        $pricing = Pricing::find($id);
+        $pricing->customer = Customer::find($pricing->customer_id)->fullname;
+        $pricing->product = Product::find($pricing->product_id)->name;
 
+        return view('pricing.edit', ['pricing' => $pricing]);
     }
 
     public function update(Request $request)
     {
+        $validatedData = $request->validate([
+            'price' => 'required'
+        ]);
+        
+        $pricing = Pricing::find($request->id);
+        $pricing->price = $request->price;
+        $pricing->save();
 
+        return Redirect::back()->with('success', 'Pricing Edited Successfully');
+    
     }
 
     public function destroy($id)

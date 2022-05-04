@@ -53,6 +53,8 @@
                                 <td>{{ $pricing->product_name }}</td>
                                 <td>{{ $pricing->price }}</td>
                                 <td class="text-center">
+                                    <a href="{{ url('pricing/edit/' . $pricing->id) }}"
+                                        class="btn btn-warning btn-circle btn-sm"><i class="fa fa-pen"></i></a>
                                     <a href="{{ url('pricing/delete/' . $pricing->id) }}"
                                         class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i></a>
                                 </td>
