@@ -44,6 +44,7 @@ Route::get('/order', 'OrderController@index')->name('order.index');
 Route::get('/order/create', 'OrderController@create')->name('order.create');
 Route::post('/order/create', 'OrderController@store')->name('order.store');
 Route::get('/order/delete/{id}', 'OrderController@destroy')->where('id', '[0-9]+')->name('order.delete');
+Route::get('/order/invoice/{id}', 'OrderController@invoice')->where('id', '[0-9]+');
 
 //Pricing
 Route::get('/pricing', 'PricingController@index')->name('pricing.index');

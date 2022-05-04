@@ -9,6 +9,7 @@ use App\Product;
 use App\Pricing;
 use Redirect;
 use Illuminate\Http\Request;
+use PDF;
 
 class OrderController extends Controller
 {
@@ -114,4 +115,48 @@ class OrderController extends Controller
         Order::destroy($id);
         return Redirect::route('order.index')->with('success', 'Order Deleted Successfully');
     }
+
+    public function invoice($id)
+    {
+        $order = Order::find($id);
+        $customer = Customer::find($order->customer_id);
+        
+        $order_products = OrderProduct::where('order_id', $id)->get();
+
+        $total_quantity = 0;
+        $total_amount = 0;
+
+        foreach ($order_products as $op) {
+            $product = Product::find($op->product_id);
+            $op->name = $product->name;
+            $op->unit = $product->unit;
+
+            $op->price = 0;
+            $pricing = Pricing::where('product_id', $product->id)->first();
+            if ($pricing) {
+                $op->price = $pricing->price;
+            }
+            $op->total_amount = ($op->price * $op->quantity);
+
+            $total_quantity += $op->quantity;
+            $total_amount += $op->total_amount;
+        }
+
+        // return view('order.invoice', [
+        //     'customer' => $customer,
+        //     'order_products' => $order_products,
+        //     'total_quantity' => $total_quantity,
+        //     'total_amount' => $total_amount
+        // ]);
+
+        $pdf = PDF::loadView('order.invoice', [
+            'customer' => $customer,
+            'order_products' => $order_products,
+            'total_quantity' => $total_quantity,
+            'total_amount' => $total_amount
+        ]);
+
+        return $pdf->download('order.pdf');
+    }
+
 }
