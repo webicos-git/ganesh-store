@@ -51,22 +51,53 @@ class OrderController extends Controller
     public function create()
     {
         $customers = Customer::all();
-        $products = Product::all();
-        return view('order.create', ['customers' => $customers, 'products' => $products]);
+        return view('order.create1', ['customers' => $customers]);
     }
 
-    public function customerProducts(Request $request)
+    public function store1(Request $request)
     {
-        $customers = Customer::all();
-        
+        $validatedData = $request->validate([
+            'customer_id' => 'required',
+            'status' => 'required'
+        ]);
+
         $pricings = Pricing::where('customer_id', $request->customer_id)->get();
+        if ($pricings->count() === 0) {
+            return Redirect::back()->withErrors(['error' => 'No pricing set for selected customer']);
+        }
+
+        $order = new Order();
+        $order->customer_id = $request->customer_id;
+        $order->status = $request->status;
+        $order->save();
+
         $product_ids = [];
         foreach ($pricings as $pricing) {
             array_push($product_ids, $pricing->product_id);
         }
 
         $products = Product::whereIn('id', $product_ids)->get();
-        return view('order.create', ['customer_id' => $request->customer_id, 'customers' => $customers, 'products' => $products]);
+        return view('order.create2', ['products' => $products, 'order_id' => $order->id]);
+    }
+
+    public function store2(Request $request)
+    {
+        $validatedData = $request->validate([
+            'product_id.*' => 'required',
+            'quantity.*' => 'required',
+            'order_id' => 'required'
+        ]);
+
+        $count = count($request->product_id);
+        for ($i = 0; $i < $count; $i++) { 
+            $order_product = new OrderProduct();
+            $order_product->order_id = $request->order_id;
+            $order_product->product_id = $request->product_id[$i];
+            $order_product->quantity = $request->quantity[$i];
+
+            $order_product->save();
+        }
+        return Redirect::route('order.index')->with('success', 'Order Added Successfully');
     }
 
     public function store(Request $request)
