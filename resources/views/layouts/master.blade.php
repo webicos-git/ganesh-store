@@ -145,6 +145,27 @@
                         </div>
                     </div>
                 </li>
+                
+                <!-- Divider -->
+                <hr class="sidebar-divider">
+                <!-- Heading -->
+                <div class="sidebar-heading">
+                    Report Generation
+                </div>
+                <!-- Nav Item - Pages Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReport"
+                        aria-expanded="true" aria-controls="collapseTwo">
+                        <i class="fa-solid fa-user"></i>
+                        <span>Reports</span>
+                    </a>
+                    <div id="collapseReport" class="collapse" aria-labelledby="headingTwo"
+                        data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="{{ route('report.index') }}">All Reports</a>
+                        </div>
+                    </div>
+                </li>
                 <!-- Divider -->
                 <hr class="sidebar-divider">
                 <!-- Heading -->

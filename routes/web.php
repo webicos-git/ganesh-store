@@ -51,6 +51,11 @@ Route::get('/pricing/create', 'PricingController@create')->name('pricing.create'
 Route::post('/pricing/create', 'PricingController@store')->name('pricing.store');
 Route::get('/pricing/delete/{id}', 'PricingController@destroy')->where('id', '[0-9]+')->name('pricing.delete');
 
+//Report Generation
+Route::get('/reports', 'ReportController@index')->name('report.index');
+Route::post('/reports', 'ReportController@filter')->name('report.filter');
+Route::get('/reports/pdf/{id?}', 'ReportController@pdf')->where('id', '[0-9]+');
+
 //Appointments
 Route::get('/appointment/create', 'AppointmentController@create')->name('appointment.create');
 Route::post('/appointment/create', 'AppointmentController@store')->name('appointment.store');

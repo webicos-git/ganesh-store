@@ -30,7 +30,7 @@ class ProductController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required',
-            'product_code' => 'required|max:3',
+            'product_code' => 'required|max:3|unique:products',
         ]);
 
         $product = new Product();
@@ -59,7 +59,7 @@ class ProductController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required',
-            'product_code' => 'required|max:3'
+            'product_code' => 'required|max:3|unique:products'
         ]);
 
         $product = Product::find($request->id);

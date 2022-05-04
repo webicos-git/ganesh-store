@@ -26,7 +26,12 @@ class OrderController extends Controller
             $total_amount = 0;
             foreach ($order_products as $op) {
                 $product = Product::find($op->product_id);
-                $price = Pricing::where('product_id', $product->id)->first()->price;
+               
+                $price = 0;
+                $pricing = Pricing::where('product_id', $product->id)->first();
+                if ($pricing) {
+                    $price = $pricing->price;
+                }
 
                 $total_amount += ($price * $op->quantity);
 
