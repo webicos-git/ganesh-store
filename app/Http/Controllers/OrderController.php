@@ -29,7 +29,7 @@ class OrderController extends Controller
                 $product = Product::find($op->product_id);
                
                 $price = 0;
-                $pricing = Pricing::where('product_id', $product->id)->first();
+                $pricing = Pricing::where('product_id', $product->id)->where('customer_id', $order->customer_id)->first();
                 if ($pricing) {
                     $price = $pricing->price;
                 }
@@ -163,7 +163,7 @@ class OrderController extends Controller
             $op->unit = $product->unit;
 
             $op->price = 0;
-            $pricing = Pricing::where('product_id', $product->id)->first();
+            $pricing = Pricing::where('product_id', $product->id)->where('customer_id', $order->customer_id)->first();
             if ($pricing) {
                 $op->price = $pricing->price;
             }

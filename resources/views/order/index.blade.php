@@ -55,7 +55,7 @@
                                 <td>{{ $order->total_amount }}</td>
                                 <td>{{ $order->status }}</td>
                                 <td class="text-center">
-                                    <a href="{{ url('order/invoice/' . $order->id) }}"
+                                    <a href="{{ url('order/invoice/' . $order->id) }}" target="_blank"
                                         class="m-0 btn btn-primary btn-circle btn-sm"><i class="fas fa-print"></i>
                                     </a>
                                     <a href="{{ url('order/delete/' . $order->id) }}"

@@ -73,7 +73,7 @@ class CustomerController extends Controller
             foreach ($order_products as $op) {
                 $product = Product::find($op->product_id);
                 $price = 0;
-                $pricing = Pricing::where('product_id', $product->id)->first();
+                $pricing = Pricing::where('product_id', $product->id)->where('customer_id', $id)->first();
                 if ($pricing) {
                     $price = $pricing->price;
                 }
