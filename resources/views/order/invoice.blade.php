@@ -287,7 +287,7 @@
         </div>
         <div class="place">
             <p>Place of suppply: 27-Maharashtra</p>
-            <p><strong>Invoice No.: OM223</strong></p>
+            <p><strong>Invoice No.: OM{{ $order_id }}</strong></p>
             <p><strong>Date: {{ \Carbon\Carbon::parse(today())->format('d/m/Y') }}</strong></p>
         </div>
     </div>
@@ -299,8 +299,8 @@
                 <th class="tg-5h8a">Item Name</th>
                 <th class="tg-5h8a">Quantity</th>
                 <th class="tg-5h8a">Unit</th>
-                <th class="tg-5h8a">Price/Unit</th>
-                <th class="tg-5h8a">Amount</th>
+                <th class="tg-5h8a">Price/Unit (In rupees)</th>
+                <th class="tg-5h8a">Amount (In rupees)</th>
             </tr>
         </thead>
         <tbody>
@@ -310,8 +310,8 @@
                     <td class="tg-zv4m">{{ $op->name }}</td>
                     <td class="tg-zv4m">{{ $op->quantity }}</td>
                     <td class="tg-zv4m">{{ $op->unit }}</td>
-                    <td class="tg-zv4m">{{ App\Setting::get_option('currency') }} {{ $op->price }}</td>
-                    <td class="tg-zv4m">{{ App\Setting::get_option('currency') }} {{ $op->total_amount }}</td>
+                    <td class="tg-zv4m"> {{ $op->price }}</td>
+                    <td class="tg-zv4m"> {{ $op->total_amount }}</td>
                 </tr>
             @endforeach
             <tr>
@@ -320,7 +320,7 @@
                 <td class="tg-zv4m">{{ $total_quantity }}</td>
                 <td class="tg-zv4m"></td>
                 <td class="tg-zv4m"></td>
-                <td class="tg-zv4m">{{ App\Setting::get_option('currency') }} {{ $total_amount }}</td>
+                <td class="tg-zv4m"> {{ $total_amount }}/-</td>
             </tr>
         </tbody>
     </table>
@@ -348,22 +348,22 @@
         <table class="tg table-3">
             <thead>
                 <tr>
-                    <th class="tg-6kjb">Amounts:</th>
+                    <th class="tg-6kjb">Amounts (In rupees) :</th>
                     <th class="tg-ikmv"></th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td class="tg-zv4m">Subtotal</td>
-                    <td class="tg-0lax">{{ App\Setting::get_option('currency') }} {{ $total_amount }}</td>
+                    <td class="tg-0lax">{{ $total_amount }}/-</td>
                 </tr>
                 <tr>
                     <td class="tg-6v43">Total</td>
-                    <td class="tg-0lax">{{ App\Setting::get_option('currency') }} {{ $total_amount }}</td>
+                    <td class="tg-0lax">{{ $total_amount }}/-</td>
                 </tr>
                 <tr>
-                    <td class="tg-de2y">Recieved</td>
-                    <td class="tg-0lax">{{ App\Setting::get_option('currency') }} 0.00</td>
+                    <td class="tg-de2y">Received</td>
+                    <td class="tg-0lax">{{ $total_amount }}/-</td>
                 </tr>
             </tbody>
         </table>

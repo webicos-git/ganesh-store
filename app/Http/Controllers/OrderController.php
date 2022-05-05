@@ -174,6 +174,7 @@ class OrderController extends Controller
         }
 
         // return view('order.invoice', [
+        //     'order_id' => $id,
         //     'customer' => $customer,
         //     'order_products' => $order_products,
         //     'total_quantity' => $total_quantity,
@@ -181,13 +182,15 @@ class OrderController extends Controller
         // ]);
 
         $pdf = PDF::loadView('order.invoice', [
+            'order_id' => $id,
             'customer' => $customer,
             'order_products' => $order_products,
             'total_quantity' => $total_quantity,
             'total_amount' => $total_amount
         ])->setPaper('a4', 'landscape');
 
-        return $pdf->download('order.pdf');
+        $date = $order->created_at->format('d-m-Y');
+        return $pdf->download($customer->fullname . '-' . $date . '.pdf');
     }
 
 }

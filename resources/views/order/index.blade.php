@@ -42,6 +42,7 @@
                             <th class="text-center">{{ 'Products' }}</th>
                             <th class="text-center">{{ 'Total Amount' }}</th>
                             <th class="text-center">{{ 'Status' }}</th>
+                            <th class="text-center">{{ 'Order Date' }}</th>
                             <th class="text-center">{{ 'Actions' }}</th>
                         </tr>
                     </thead>
@@ -54,6 +55,7 @@
                                 <td>{{ $order->products }}</td>
                                 <td>{{ $order->total_amount }}</td>
                                 <td>{{ $order->status }}</td>
+                                <td>{{ $order->created_at->format('d-m-Y') }}</td>
                                 <td class="text-center">
                                     <a href="{{ url('order/invoice/' . $order->id) }}" target="_blank"
                                         class="m-0 btn btn-primary btn-circle btn-sm"><i class="fas fa-print"></i>

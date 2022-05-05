@@ -110,18 +110,19 @@ class ReportController extends Controller
     {
         $report_data = $this->getReportData($id);
 
-        $group_name = null;
+        $group_name = 'NA';
         if ($id) {
             $group_name = Group::find($id)->name;
         }
 
+        $date = $report_data['date'] ? $report_data['date'] : today();
         // return view('report.pdf', [
         //     'products' => $report_data['products'],
         //     'customers' => $report_data['customers'],
         //     'groups' => $report_data['groups'],
         //     'group_id' => $report_data['group_id'],
         //     'group_name' => $group_name,
-        //     'date' => $report_data['date'] ? $report_data['date'] : today(),
+        //     'date' => $date,
         //     'total_price' => $report_data['total_price'],
         // ]);
 
@@ -131,11 +132,12 @@ class ReportController extends Controller
             'groups' => $report_data['groups'],
             'group_id' => $report_data['group_id'],
             'group_name' => $group_name,
-            'date' => $report_data['date'] ? $report_data['date'] : today(),
+            'date' => $date,
             'total_price' => $report_data['total_price'],
         ])->setPaper('a4', 'landscape');
 
-        return $pdf->download('ganesh-store-report.pdf');
+        $date = $date->format('d-m-Y');
+        return $pdf->download($date . $group_name . '.pdf');
     }
 
     public function homePdf(Request $request)
@@ -165,6 +167,6 @@ class ReportController extends Controller
             'total_price' => $report_data['total_price'],
         ])->setPaper('a4', 'landscape');
 
-        return $pdf->download('ganesh-store-report.pdf');
+        return $pdf->download($request->date . $group_name . '.pdf');
     }
 }

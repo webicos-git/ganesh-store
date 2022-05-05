@@ -116,5 +116,12 @@ class SettingsSeeder extends Seeder
             'password' => Hash::make('doctorino'),
             'role' => 'admin',
         ]);
+
+        DB::table('users')->insert([
+            'name' => 'sgs',
+            'email' => 'sgs@gmail.com',
+            'password' => Hash::make('sgs@123'),
+            'role' => 'admin',
+        ]);
     }
 }
