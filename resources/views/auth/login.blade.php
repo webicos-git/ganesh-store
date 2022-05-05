@@ -19,7 +19,11 @@
                   <div class="card-body p-0">
                      <!-- Nested Row within Card Body -->
                      <div class="row">
-                        <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                        <!-- <div class="col-lg-6 d-none d-lg-block bg-login-image"></div> -->
+                        <img
+                          src="https://bit.ly/3FjZm9V"
+                          class="col-lg-6 col-12 img-fluid rounded"
+                          alt="Login image">
                         <div class="col-lg-6">
                            <div class="p-5">
                               <div class="text-center">
@@ -42,19 +46,19 @@
                                     </span>
                                     @enderror
                                  </div>
-                                 <div class="form-group">
+                                 <!-- <div class="form-group">
                                     <div class="custom-control custom-checkbox small">
                                        <input class="custom-control-input" type="checkbox" name="remember" id="customCheck" {{ old('remember') ? 'checked' : '' }}>
                                        {{ csrf_field() }}
                                        <label class="custom-control-label" for="customCheck">{{ __('sentence.Remember Me') }}</label>
                                     </div>
-                                 </div>
+                                 </div> -->
                                  <button class="btn btn-primary btn-user btn-block" type="submit"> {{ __('sentence.Login') }}</button> 
                               </form>
-                              <hr>
+                              <!-- <hr> -->
                               @if(Route::has('password.request'))
                               <div class="text-center">
-                                 <a class="small" href="{{ route('password.request') }}"> {{ __('sentence.Forgot Your Password') }}</a>
+                                 <!-- <a class="small" href="{{ route('password.request') }}"> {{ __('sentence.Forgot Your Password') }}</a> -->
                               </div>
                               @endif
                            </div>
