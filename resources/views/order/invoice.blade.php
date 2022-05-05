@@ -218,20 +218,11 @@
             padding: .5rem 0;
         }
 
-        .row {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            column-gap: 1rem
-        }
-
         .wrapper p {
             text-align: left;
         }
 
         .wrapper {
-            display: flex;
-            justify-content: space-between;
             padding: 0 2rem;
         }
 
@@ -249,8 +240,6 @@
         }
 
         .table-wrap {
-            display: flex;
-            justify-content: space-between;
             margin: 0 2rem;
         }
 
@@ -259,15 +248,25 @@
             margin: 5rem 5rem 0 0;
         }
 
+        .contact-info {
+            margin: 0px 10px
+        }
     </style>
 </head>
 
 <body>
     <h1>OM AGENCIES</h1>
     <p><strong>Address: </strong> SHREE GANESH PROVISION STORE URAN KOT NAKA</p>
-    <div class="row">
-        <p><strong>Phone no.: </strong> 9702220936 </p>
-        <p><strong>Email: </strong>om.agency.0936@gmail.com</p>
+    <div>
+        <p>
+            <span class="contact-info">
+                <strong>Phone no.: </strong> 9702220936
+            </span>
+            
+            <span class="contact-info">
+                <strong>Email: </strong>om.agency.0936@gmail.com
+            </span> 
+        </p>
     </div>
     <p><strong>State: </strong>27-Maharashtra</p>
 
@@ -311,8 +310,8 @@
                     <td class="tg-zv4m">{{ $op->name }}</td>
                     <td class="tg-zv4m">{{ $op->quantity }}</td>
                     <td class="tg-zv4m">{{ $op->unit }}</td>
-                    <td class="tg-zv4m">₹ {{ $op->price }}</td>
-                    <td class="tg-zv4m">₹ {{ $op->total_amount }}</td>
+                    <td class="tg-zv4m">{{ App\Setting::get_option('currency') }} {{ $op->price }}</td>
+                    <td class="tg-zv4m">{{ App\Setting::get_option('currency') }} {{ $op->total_amount }}</td>
                 </tr>
             @endforeach
             <tr>
@@ -321,7 +320,7 @@
                 <td class="tg-zv4m">{{ $total_quantity }}</td>
                 <td class="tg-zv4m"></td>
                 <td class="tg-zv4m"></td>
-                <td class="tg-zv4m">₹ {{ $total_amount }}</td>
+                <td class="tg-zv4m">{{ App\Setting::get_option('currency') }} {{ $total_amount }}</td>
             </tr>
         </tbody>
     </table>
@@ -356,15 +355,15 @@
             <tbody>
                 <tr>
                     <td class="tg-zv4m">Subtotal</td>
-                    <td class="tg-0lax">₹ {{ $total_amount }}</td>
+                    <td class="tg-0lax">{{ App\Setting::get_option('currency') }} {{ $total_amount }}</td>
                 </tr>
                 <tr>
                     <td class="tg-6v43">Total</td>
-                    <td class="tg-0lax">₹ {{ $total_amount }}</td>
+                    <td class="tg-0lax">{{ App\Setting::get_option('currency') }} {{ $total_amount }}</td>
                 </tr>
                 <tr>
                     <td class="tg-de2y">Recieved</td>
-                    <td class="tg-0lax">₹ 0.00</td>
+                    <td class="tg-0lax">{{ App\Setting::get_option('currency') }} 0.00</td>
                 </tr>
             </tbody>
         </table>

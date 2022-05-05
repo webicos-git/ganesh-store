@@ -133,7 +133,7 @@ class ReportController extends Controller
             'group_name' => $group_name,
             'date' => $report_data['date'] ? $report_data['date'] : today(),
             'total_price' => $report_data['total_price'],
-        ]);
+        ])->setPaper('a4', 'landscape');
 
         return $pdf->download('ganesh-store-report.pdf');
     }
