@@ -161,8 +161,9 @@ class ReportController extends Controller
             'groups' => $report_data['groups'],
             'group_id' => $report_data['group_id'],
             'group_name' => $group_name,
-            'date' => $report_data['date']
-        ]);
+            'date' => $report_data['date'],
+            'total_price' => $report_data['total_price'],
+        ])->setPaper('a4', 'landscape');
 
         return $pdf->download('ganesh-store-report.pdf');
     }
