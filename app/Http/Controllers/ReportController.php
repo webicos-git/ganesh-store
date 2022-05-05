@@ -55,21 +55,30 @@ class ReportController extends Controller
                 }
                 $product[$customer->id] = $total_quantity;
 
-                $customer->total_quantity = 0;
+                $customer->total_price = 0;
                 foreach ($products as $p) {
-                    $customer->total_quantity += $p[$customer->id]; 
+                    $pricing = Pricing::where('customer_id', $customer->id)->where('product_id', $p->id)->first();
+                    if ($pricing) {
+                        $customer->total_price += ($pricing->price * $p[$customer->id]);
+                    }
                 }
 
                 $product->total_quantity += $total_quantity;
             }
-            
         }
+
+        $total_price = 0;
+        foreach ($customers as $c) {
+            $total_price += $c->total_price;
+        }
+
         return [
             'products' => $products,
             'customers' => $customers,
             'groups' => $groups,
             'group_id' => $group_id,
-            'date' => $date
+            'date' => $date,
+            'total_price' => $total_price
         ];
     }
 
@@ -81,6 +90,7 @@ class ReportController extends Controller
             'customers' => $report_data['customers'],
             'groups' => $report_data['groups'],
             'group_id' => $report_data['group_id'],
+            'total_price' => $report_data['total_price'],
         ]);
     }
 
@@ -92,6 +102,7 @@ class ReportController extends Controller
             'customers' => $report_data['customers'],
             'groups' => $report_data['groups'],
             'group_id' => $report_data['group_id'],
+            'total_price' => $report_data['total_price'],
         ]);
     }
     
@@ -111,6 +122,7 @@ class ReportController extends Controller
         //     'group_id' => $report_data['group_id'],
         //     'group_name' => $group_name,
         //     'date' => $report_data['date'] ? $report_data['date'] : today(),
+        //     'total_price' => $report_data['total_price'],
         // ]);
 
         $pdf = PDF::loadView('report.pdf', [
@@ -120,6 +132,7 @@ class ReportController extends Controller
             'group_id' => $report_data['group_id'],
             'group_name' => $group_name,
             'date' => $report_data['date'] ? $report_data['date'] : today(),
+            'total_price' => $report_data['total_price'],
         ]);
 
         return $pdf->download('ganesh-store-report.pdf');

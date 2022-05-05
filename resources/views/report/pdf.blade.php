@@ -82,7 +82,7 @@
                     @foreach ($products as $product)
                         <td class="tg-0lax">{{ $product[$customer->id] }}</td>
                     @endforeach
-                    <td class="tg-0lax"><b>{{ $customer->total_quantity }}</b></td>
+                    <td class="tg-0lax"><b>{{ $customer->total_price }}</b></td>
                 </tr>
             @endforeach
             
@@ -91,7 +91,7 @@
                 @foreach ($products as $product)
                     <td class="tg-0lax"><b>{{ $product->total_quantity }}</b></td>
                 @endforeach
-                <td class="tg-0lax"></td>
+                <td class="tg-0lax"><b>{{ $total_price }}</b></td>
             </tr>
         </tbody>
     </table>

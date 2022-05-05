@@ -173,12 +173,12 @@ class OrderController extends Controller
             $total_amount += $op->total_amount;
         }
 
-        // return view('order.invoice', [
-        //     'customer' => $customer,
-        //     'order_products' => $order_products,
-        //     'total_quantity' => $total_quantity,
-        //     'total_amount' => $total_amount
-        // ]);
+        return view('order.invoice', [
+            'customer' => $customer,
+            'order_products' => $order_products,
+            'total_quantity' => $total_quantity,
+            'total_amount' => $total_amount
+        ]);
 
         $pdf = PDF::loadView('order.invoice', [
             'customer' => $customer,
