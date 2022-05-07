@@ -61,7 +61,11 @@
                                         class="m-0 btn btn-primary btn-circle btn-sm"><i class="fas fa-print"></i>
                                     </a>
                                     <a href="{{ url('order/delete/' . $order->id) }}"
-                                        class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i></a>
+                                        class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i>
+                                    </a>
+                                    <a href="{{ 'https://api.whatsapp.com/send?phone=' . $order->customer_phone . '&text=' . url('order/invoice/' . $order->id) }}" target="_blank"
+                                        class="m-0 btn btn-warning btn-circle btn-sm"><i class="fa-brands fa-whatsapp"></i>
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach

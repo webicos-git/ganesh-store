@@ -39,7 +39,9 @@ class OrderController extends Controller
                 array_push($products, $product->name);
             }
             
-            $order->customer_name = Customer::find($order->customer_id)->fullname;
+            $customer = Customer::find($order->customer_id);
+            $order->customer_name = $customer->fullname;
+            $order->customer_phone = $customer->phone;
             $order->products = implode(', ', $products);
             $order->total_amount = $total_amount;
         }
